@@ -2,24 +2,28 @@
   display: flex;
 
   li {
-    border: 1px solid #fe5f1e;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
     margin-right: 10px;
+    caret-color: transparent;
 
+    a {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #fe5f1e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
   }
 
   :global {
     .selected {
       background-color: #fe5f1e;
       color: white;
-
+      border-radius: 50%;
       a {
         color: white;
+
       }
     }
   }
