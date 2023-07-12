@@ -1,20 +1,24 @@
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {setSort} from "../../redux/slices/filterSlice";
 
-const Sort = ({type, clickSort}) => {
+const Sort = () => {
+    const dispatch = useDispatch();
+    const sort = useSelector(state => state.filterState.sort)
     const [open, setOpen] = useState(false);
 
     const list = [
-        {name:"популярности \u2191", sortProperty:"rating"},
-        {name:"популярности \u2193", sortProperty:"-rating"},
-        {name:"цене \u2191", sortProperty:"price"},
-        {name:"цене \u2193", sortProperty:"-price"},
-        {name:"алфавиту \u2191", sortProperty:"title"},
-        {name:"алфавиту \u2193", sortProperty:"-title"},
+        {name: "популярности \u2191", sortProperty: "rating"},
+        {name: "популярности \u2193", sortProperty: "-rating"},
+        {name: "цене \u2191", sortProperty: "price"},
+        {name: "цене \u2193", sortProperty: "-price"},
+        {name: "алфавиту \u2191", sortProperty: "title"},
+        {name: "алфавиту \u2193", sortProperty: "-title"},
     ];
 
 
-    const onItemSelected = (i)=>{
-        clickSort(i);
+    const onItemSelected = (i) => {
+        dispatch(setSort(i))
         setOpen(false);
     }
 
@@ -34,16 +38,16 @@ const Sort = ({type, clickSort}) => {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={()=>setOpen(!open)}>{type}</span>
+                <span onClick={() => setOpen(!open)}>{sort.name}</span>
             </div>
-            {open &&(
+            {open && (
                 <div className="sort__popup">
                     <ul>
-                        {list.map((cat, i)=>(
+                        {list.map((cat, i) => (
                             <li
                                 key={i}
-                                className={cat.name === type ? "active" : ""}
-                                onClick={()=>onItemSelected(cat)}
+                                className={cat.name === sort.name ? "active" : ""}
+                                onClick={() => onItemSelected(cat)}
                             >
                                 {cat.name}
                             </li>
