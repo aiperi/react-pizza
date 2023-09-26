@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './pagination.module.scss'
 import ReactPaginate from "react-paginate";
+import {useSelector} from "react-redux";
 
 // const handlePageClick = (event) => {
 //     const newOffset = (event.selected * itemsPerPage) % items.length;
@@ -14,6 +15,7 @@ import ReactPaginate from "react-paginate";
 
 
 const Pagination = ({onPageChange}) => {
+
     return (
         <div>
             <ReactPaginate
